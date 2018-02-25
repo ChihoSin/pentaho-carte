@@ -18,13 +18,13 @@ set -e
 
 : ${SERVER_NAME:="pdi-server"}
 : ${SERVER_HOST:="`hostname`"}
-: ${SERVER_PORT:="6000"}
+: ${SERVER_PORT:="7373"}
 : ${SERVER_USER:="admin"}
 : ${SERVER_PASSWD:=""}
 
 : ${MASTER_NAME:="pdi-master"}
 : ${MASTER_HOST:="localhost"}
-: ${MASTER_PORT:="6000"}
+: ${MASTER_PORT:="7373"}
 : ${MASTER_CONTEXT:="pentaho"}
 : ${MASTER_USER:="admin"}
 : ${MASTER_PASSWD:="password"}
