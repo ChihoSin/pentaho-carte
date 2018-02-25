@@ -25,7 +25,7 @@ RUN apk update && \
 ADD docker-entrypoint.sh $KETTLE_HOME/docker-entrypoint.sh
 
 VOLUME ["/opt/pentaho/repository"]
-EXPOSE 6000
+EXPOSE 7373
 
 WORKDIR $KETTLE_HOME
 CMD ["/bin/bash", "./docker-entrypoint.sh", "master"]
