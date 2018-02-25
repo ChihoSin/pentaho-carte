@@ -1,0 +1,27 @@
+version: '2'
+services:
+  pdi-slave:
+    image: bigbug/pentaho-carte:latest
+    command: master
+    ports:
+      - "6000:6000"
+    volumes:
+      - ./ext:/pdi-ext:ro
+      - ./data/logs:/opt/pentaho/data-integration/logs:rw
+      - ./data/cache:/opt/pentaho/data-integration/system/karaf/caches:rw
+      - ./data/data:/opt/pentaho/data-integration/system/karaf/data:rw
+      - ./data/tmp:/tmp:rw
+    environment:
+      SERVER_NAME: pdi-master
+      SERVER_HOST: 0.0.0.0
+      SERVER_PORT: 6000
+      SERVER_USER: admin
+      SERVER_PASSWD: 
+    security_opt:
+      - seccomp:unconfined
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 65535
+        hard: 65535
+    restart: always
