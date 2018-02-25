@@ -4,7 +4,7 @@ services:
     image: chihosin/pentaho-carte
     command: master
     ports:
-      - "6000:6000"
+      - "7373:7373"
     volumes:
       - ./ext:/pdi-ext:ro
       - ./data/logs:/opt/pentaho/data-integration/logs:rw
@@ -14,7 +14,7 @@ services:
     environment:
       SERVER_NAME: pdi-master
       SERVER_HOST: 0.0.0.0
-      SERVER_PORT: 6000
+      SERVER_PORT: 7373
       SERVER_USER: admin
       SERVER_PASSWD: 
     security_opt:
