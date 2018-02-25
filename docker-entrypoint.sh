@@ -9,11 +9,11 @@ set -e
 : ${PDI_MAX_LOG_TIMEOUT:="1440"}
 : ${PDI_MAX_OBJ_TIMEOUT:="240"}
 
-: ${CERT_COUNTRY:="CN"}
-: ${CERT_STATE:="GD"}
-: ${CERT_LOCATION:="China"}
-: ${CERT_ORGANIZATION:="Bigbug"}
-: ${CERT_ORG_UNIT:="RDC"}
+: ${CERT_COUNTRY:="BR"}
+: ${CERT_STATE:="DF"}
+: ${CERT_LOCATION:="Brasilia"}
+: ${CERT_ORGANIZATION:="Ap1"}
+: ${CERT_ORG_UNIT:="D"}
 : ${CERT_NAME:="Pentaho"}
 
 : ${SERVER_NAME:="pdi-server"}
