@@ -86,10 +86,10 @@ KETTLE_STEP_PERFORMANCE_SNAPSHOT_LIMIT=1
 # Tracing
 #KETTLE_TRACING_ENABLED=Y
 #KETTLE_TRACING_HTTP_URL=http://localhost:9411
-" 
+EOF
 	fi
 	if [ ! -f classes/log4j.xml ]; then
-	  mkdir classes
+		mkdir classes
 		echo "Generating log4j.xml..."
 		cat << EOF > classes/log4j.xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -197,6 +197,7 @@ gen_master_config() {
             <master>Y</master>
             <sslMode>N</sslMode>
         </slaveserver>
+		<report_to_masters>Y</report_to_masters>
         <max_log_lines>${PDI_MAX_LOG_LINES}</max_log_lines>
         <max_log_timeout_minutes>${PDI_MAX_LOG_TIMEOUT}</max_log_timeout_minutes>
         <object_timeout_minutes>${PDI_MAX_OBJ_TIMEOUT}</object_timeout_minutes>
@@ -227,4 +228,4 @@ elif [ "$1" = 'master' ]; then
 	exec $KETTLE_HOME/carte.sh $KETTLE_HOME/pwd/master.xml
 fi
 
-exec "$@"
+exec $KETTLE_HOME/carte.sh "$@"
