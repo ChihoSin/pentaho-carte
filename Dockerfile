@@ -23,6 +23,11 @@ RUN wget -qO /tmp/pdi-ce.zip https://downloads.sourceforge.net/project/pentaho/P
     apk del build-dependencies && \
     chmod -R g+w ${PENTAHO_HOME}
 
+# Patch to restore images https://jira.pentaho.com/browse/PDI-17948
+RUN wget -qO /tmp/static.tgz https://jira.pentaho.com/secure/attachment/100366/data-integration-static-folder.gz && \
+    gzip -dc /tmp/static.tgz |tar -xvf - -C /opt/pentaho/data-integration/
+
+
 ADD docker-entrypoint.sh $KETTLE_HOME/docker-entrypoint.sh
 
 VOLUME ["/opt/pentaho/repository"]
