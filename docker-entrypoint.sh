@@ -167,7 +167,7 @@ gen_slave_config() {
         <password>${SERVER_PASSWD}</password>
         <master>N</master>
         <sslMode>N</sslMode>
-        <get_properties_from_master>Master</get_properties_from_master>
+        <get_properties_from_master>${MASTER_NAME}</get_properties_from_master>
         <override_existing_properties>Y</override_existing_properties>
     </slaveserver>
     <max_log_lines>${PDI_MAX_LOG_LINES}</max_log_lines>
