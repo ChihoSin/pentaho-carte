@@ -1,6 +1,5 @@
-FROM alpine:3.6
-
-MAINTAINER Chiho Sin <chihosin@outlook.com>
+FROM openjdk:8-alpine3.7
+LABEL maintainer="Chiho Sin <chihosin@outlook.com>, Patrick O'Leary <pjaol@pjaol.com>"
 
 ENV JAVA_HOME=/usr/lib/jvm/default-jvm/jre
 ENV PENTAHO_VERSION=8.3 \
@@ -11,10 +10,17 @@ ENV PENTAHO_VERSION=8.3 \
     KETTLE_HOME=/opt/pentaho/data-integration\
     PATH=${PATH}:${JAVA_HOME}/bin
 RUN echo  wget -qO /tmp/pdi-ce.zip https://downloads.sourceforge.net/project/pentaho/Pentaho%20${PENTAHO_VERSION}/client-tools/pdi-ce-${PDI_BUILD}.zip
+
+# apk (Alpine maintained) version of openjdk-8 is version 214 which has an com.sun.ssl bug
+# openjdk:8-alpine from the openjdk team, is version 222 which has a fix for com.sun.ssl
+# webkitgtk is no longer maintained by the alpine team
+# apk add openjdk8-jre bash webkitgtk && 
+# RUN    apk add webkitgtk-dev --repository=http://dl-cdn.alpinelinux.org/alpine/v3.6/community/ 
 RUN apk update && \
     apk --no-cache add libressl && \
-    apk add openjdk8-jre bash webkitgtk && \
-    apk add --virtual build-dependencies ca-certificates openssl && \
+    apk add bash
+
+RUN apk add --virtual build-dependencies ca-certificates openssl && \
     update-ca-certificates 
 RUN mkdir -p ${PENTAHO_HOME}
 RUN wget -qO /tmp/pdi-ce.zip https://downloads.sourceforge.net/project/pentaho/Pentaho%20${PENTAHO_VERSION}/client-tools/pdi-ce-${PDI_BUILD}.zip && \
